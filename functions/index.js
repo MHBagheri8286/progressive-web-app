@@ -1,7 +1,7 @@
 const { onRequest } = require("firebase-functions/v2/https");
 var admin = require("firebase-admin");
 var cors = require("cors")({ origin: true });
-
+var webpush = require("web-push");
 // // Create and Deploy Your First Cloud Functions
 // // https://firebase.google.com/docs/functions/write-firebase-functions
 //
@@ -26,6 +26,31 @@ exports.storePostData = onRequest(function (request, response) {
         image: request.body.image,
       })
       .then(function () {
+        webpush.setVapidDetails(
+          "mailto:bagheri.mh69@gamil.com",
+          "BHBoY9om1O96JUKI4BUR9VO5olafV9T2h6Vi8Q3jyJD9bpEaaz_gGO0do1D90qfAI_4JdHWGJwXBNKuy7D--2dg",
+          "qzd3UNKm3Ll5HySrir0ZSAOla3jnn6CCoAnDw2TKG3g"
+        );
+        return admin.database().ref("subscriptions").once("value");
+      })
+      .then(function (subscriptions) {
+        subscriptions.forEach(function (sub) {
+          var pushConfig = {
+            endpoint: sub.val().endpoint,
+            keys: {
+              auth: sub.val().keys.auth,
+              p256dh: sub.val().keys.p256dh,
+            },
+          };
+          webpush
+            .sendNotification(
+              pushConfig,
+              JSON.stringify({ title: "New Post", content: "New Post added!" })
+            )
+            .catch(function (err) {
+              console.log(err);
+            });
+        });
         response
           .status(201)
           .json({ message: "Data stored", id: request.body.id });

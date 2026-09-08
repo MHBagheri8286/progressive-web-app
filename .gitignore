@@ -69,4 +69,5 @@ node_modules/
 .dataconnect
 *.local
 .DS_Store
+.vscode
 functions/pwagram-fb-key.json
