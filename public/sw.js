@@ -1,7 +1,7 @@
 importScripts('/src/js/idb.js');
 importScripts('/src/js/utility.js');
 
-var CACHE_STATIC_NAME = 'static-v34';
+var CACHE_STATIC_NAME = 'static-v38';
 var CACHE_DYNAMIC_NAME = 'dynamic-v5';
 var STATIC_FILES = [
   '/',
@@ -75,7 +75,7 @@ function isInArray(string, array) {
 
 self.addEventListener('fetch', function (event) {
 
-  var url = 'https://pwagram-99adf.firebaseio.com/posts';
+  var url = 'https://getposts-prviemzn3q-uc.a.run.app';
   if (event.request.url.indexOf(url) > -1) {
     event.respondWith(fetch(event.request)
       .then(function (res) {
@@ -194,6 +194,8 @@ self.addEventListener('sync', function(event) {
             postData.append('id', dt.id);
             postData.append('title', dt.title);
             postData.append('location', dt.location);
+            postData.append("rawLocationLat", dt.rawLocation.lat);
+            postData.append("rawLocationLng", dt.rawLocation.lng);
             postData.append('file', dt.picture, dt.id + '.png');
 
             fetch('https://storepostdata-prviemzn3q-uc.a.run.app', {
