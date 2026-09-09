@@ -213,7 +213,7 @@ form.addEventListener("submit", function (event) {
         id: new Date().toISOString(),
         title: titleInput.value,
         location: locationInput.value,
-        image: picture,
+        picture: picture,
       };
       writeData("sync-posts", post)
         .then(function () {

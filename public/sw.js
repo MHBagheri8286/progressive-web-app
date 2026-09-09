@@ -1,14 +1,15 @@
 importScripts('/src/js/idb.js');
 importScripts('/src/js/utility.js');
 
-var CACHE_STATIC_NAME = 'static-v31';
-var CACHE_DYNAMIC_NAME = 'dynamic-v2';
+var CACHE_STATIC_NAME = 'static-v34';
+var CACHE_DYNAMIC_NAME = 'dynamic-v5';
 var STATIC_FILES = [
   '/',
   '/index.html',
   '/offline.html',
   '/src/js/app.js',
   '/src/js/feed.js',
+  '/src/js/utility.js',
   '/src/js/idb.js',
   '/src/js/promise.js',
   '/src/js/fetch.js',
@@ -195,7 +196,7 @@ self.addEventListener('sync', function(event) {
             postData.append('location', dt.location);
             postData.append('file', dt.picture, dt.id + '.png');
 
-            fetch('https://us-central1-pwagram-99adf.cloudfunctions.net/storePostData', {
+            fetch('https://storepostdata-prviemzn3q-uc.a.run.app', {
               method: 'POST',
               body: postData
             })
