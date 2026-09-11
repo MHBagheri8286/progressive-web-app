@@ -1,13 +1,15 @@
 module.exports = {
   "globDirectory": "public/",
   "globPatterns": [
-    "**/*.{html,ico,json,css,js}",
-    "src/images/*.{png,jpg}"
+    "**/*.{html,ico,json,css}",
+    "src/images/*.{png,jpg}",
+    "src/js/*.min.js"
   ],
   "swSrc": "public/sw-base.js",
   "swDest": "public/service-worker.js",
   "globIgnores": [
     "../workbox-cli-config.js",
-    "help/**"
+    "help/**",
+    "404.html"
   ]
 };
