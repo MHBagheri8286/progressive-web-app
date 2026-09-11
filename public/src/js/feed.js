@@ -106,8 +106,6 @@ imagePicker.addEventListener("change", function (event) {
 });
 
 function openCreatePostModal() {
-  // createPostArea.style.display = 'block';
-  // setTimeout(function() {
   setTimeout(function () {
     createPostArea.style.transform = "translateY(0)";
   }, 1);
@@ -130,15 +128,6 @@ function openCreatePostModal() {
 
     deferredPrompt = null;
   }
-
-  // if ('serviceWorker' in navigator) {
-  //   navigator.serviceWorker.getRegistrations()
-  //     .then(function(registrations) {
-  //       for (var i = 0; i < registrations.length; i++) {
-  //         registrations[i].unregister();
-  //       }
-  //     })
-  // }
 }
 
 function closeCreatePostModal() {
@@ -198,10 +187,6 @@ function createCard(data) {
   cardSupportingText.className = "mdl-card__supporting-text";
   cardSupportingText.textContent = data.location;
   cardSupportingText.style.textAlign = "center";
-  // var cardSaveButton = document.createElement('button');
-  // cardSaveButton.textContent = 'Save';
-  // cardSaveButton.addEventListener('click', onSaveButtonClicked);
-  // cardSupportingText.appendChild(cardSaveButton);
   cardWrapper.appendChild(cardSupportingText);
   componentHandler.upgradeElement(cardWrapper);
   sharedMomentsArea.appendChild(cardWrapper);
